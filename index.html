@@ -4,22 +4,97 @@
 <head>
     <meta charset="utf-8">
     <script src="background.js"></script>
+    <link rel="stylesheet" href="styles.css">
     <script type="text/javascript" src="brython.js"></script>
     <script type="text/javascript" src="brython_stdlib.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
 </head>
 
 <script src='brython.js'></script>
 <script src='brython_stdlib.js'></script>
 
 <body onload="brython()">
-    <h1> Hello, shaney this side.</h1>
-    <button onClick="">Click me</button>
+    <div id="body-container" class="body-container" width=1000>
+        <div id=navbar class="navigation-container">
+                <div id=recommendations-tab onClick="open_tab(event, 'recommendations-body')" class="tab"><strong>Recommendations</strong></div>
+                <div id=statistics-tab onClick="open_tab(event, 'statistics-body')" class="tab"><strong>Statistics</strong></div>
+        </div>
+
+        <div id="alert-message" class="alert" style="display: none;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>Hey User!<br><hr style="border: none;"></strong> You have been watching videos supporting a particular opinion for a while now. We recommend you to check out other opinions from the following recommendations.
+        </div>
+          
+
+        <div id=recommendations-body class="tab-body">
+                <div id=video_1 class="video" onclick="open_link(1)" >
+                    <div id=video_1_type style="width:5px;height:150px;"></div>
+                    <img id=video_1_thumbnail src="" alt="">
+                    <h4 id="video_1_title"></h4>
+                </div>
+                <div id=video_2 class="video" onclick="open_link(2)">
+                    <div id=video_2_type style="width:5px;height:150px;"></div>
+                    <img id=video_2_thumbnail src="" alt="">
+                    <h4 id="video_2_title"></h4>
+                </div>
+                <div id=video_3 class="video" onclick="open_link(3)">
+                    <div id=video_3_type style="width:5px;height:150px;"></div>
+                    <img id=video_3_thumbnail src="" alt="">
+                    <h4 id="video_3_title"></h4>
+                </div>
+                <div id=video_4 class="video" onclick="open_link(4)">
+                    <div id=video_4_type style="width:5px;height:150px;"></div>
+                    <img id=video_4_thumbnail src="" alt="">
+                    <h4 id="video_4_title"></h4>
+                </div>
+                <div id=video_5 class="video" onclick="open_link(5)">
+                    <div id=video_5_type style="width:5px;height:150px;"></div>
+                    <img id=video_5_thumbnail src="" alt="">
+                    <h4 id="video_5_title"></h4>
+                </div>
+                <div id=video_6 class="video" onclick="open_link(6)">
+                    <div id=video_6_type style="width:6px;height:160px;"></div>
+                    <img id=video_6_thumbnail src="" alt="">
+                    <h4 id="video_6_title"></h4>
+                </div>
+                <div id=video_7 class="video" onclick="open_link(7)">
+                    <div id=video_7_type style="width:5px;height:150px;"></div>
+                    <img id=video_7_thumbnail src="" alt="">
+                    <h4 id="video_7_title"></h4>
+                </div>
+                <div id=video_8 class="video" onclick="open_link(8)">
+                    <div id=video_8_type style="width:5px;height:150px;"></div>
+                    <img id=video_8_thumbnail src="" alt="">
+                    <h4 id="video_8_title"></h4>
+                </div>
+                <div id=video_9 class="video" onclick="open_link(9)">
+                    <div id=video_9_type style="width:5px;height:150px;"></div>
+                    <img id=video_9_thumbnail src="" alt="">
+                    <h4 id="video_9_title"></h4>
+                </div>
+                <div id=video_10 class="video" onclick="open_link(10)">
+                    <div id=video_10_type style="width:5px;height:150px;"></div>
+                    <img id=video_10_thumbnail src="" alt="">
+                    <h4 id="video_10_title"></h4>
+                </div>
+        </div>
+        
+        <div id=statistics-body class="tab-body">
+            <div id=pie-chart >
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts.js"></script>
+
+    
+
 </body>
+
 
 <script type="text/python">
     from browser import document
     
-    document <= "Hello"
 </script>
 
 </html>
