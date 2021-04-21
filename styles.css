@@ -1,7 +1,9 @@
 * {
     font-family: Arial;
    }
-  
+  body{
+    margin: 0;
+  }
   .body-container {
       margin-left: auto;
       margin-right: auto;
@@ -10,12 +12,19 @@
       float: none;
       background-color: #222222;
       height: 600px;
+      position: relative;
       overflow-x: hidden;
-      overflow-y: auto;
+      overflow-y: hidden;
       text-align: center;
       border-radius: 20px 20px 0 0;
    }
     
+   .tab-body{
+     position: absolute;
+     height: 550px;
+     overflow-y:scroll;
+     overflow-x: hidden;
+   }
     .navigation-container {
       display: flex;
       overflow: hidden;
@@ -56,6 +65,10 @@
       cursor: pointer;
     }
   
+    /* .thumbnail{
+        position: absolute;
+        clip: (-50px 0 50px 0);
+    } */
   
     h4 {
       padding-left: 16px;
@@ -64,6 +77,7 @@
   
     .alert {
       padding: 20px;
+      margin: 30px;
       background-color: #1f1f1f;
       text-align: left;
       color: white;
