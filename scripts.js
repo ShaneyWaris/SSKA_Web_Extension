@@ -190,8 +190,8 @@ const Article370 = () => {
       height: 500,
       width: 550,
       titleTextStyle: {
-        color: 'white',    
-        bold: true,    
+        color: "white",
+        bold: true,
       },
       is3D: true,
       colors: ["purple", "yellow", "green"],
@@ -206,13 +206,13 @@ const Article370 = () => {
 
   // functions
 
-  function toggle(className, displayState){
-    var elements = document.getElementsByClassName(className)
+  function toggle(className, displayState) {
+    var elements = document.getElementsByClassName(className);
 
-    for (var i = 0; i < elements.length; i++){
-        elements[i].style.display = displayState;
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.display = displayState;
     }
-}
+  }
 
   //updating titles, thumbnails, and label colours
 
@@ -241,46 +241,48 @@ const Article370 = () => {
     }
   }
 
-  
   if (current_label == 1) {
-    var video_type_text='supports removal of Article 370'
-    document.getElementById("current_video").innerHTML = "<strong>Hey, </strong> <hr style='border: none;'>you are watching a video that "+video_type_text
+    var video_type_text = "supports removal of Article 370";
+    document.getElementById("current_video").innerHTML =
+      "<strong>Hey, </strong> <hr style='border: none;'>you are watching a video that " +
+      video_type_text;
   } else if (current_label == 2) {
-    var video_type_text='opposes removal of Article 370'
-    document.getElementById("current_video").innerHTML = "<strong>Hey, </strong> <hr style='border: none;'> you are watching a video that "+video_type_text
+    var video_type_text = "opposes removal of Article 370";
+    document.getElementById("current_video").innerHTML =
+      "<strong>Hey, </strong> <hr style='border: none;'> you are watching a video that " +
+      video_type_text;
   } else if (current_label == 0) {
-    var video_type_text='unbiased video'
-      document.getElementById("current_video").innerHTML = "<strong>Hey, </strong> <hr style='border: none;'> you are watching an "+video_type_text
+    var video_type_text = "unbiased video";
+    document.getElementById("current_video").innerHTML =
+      "<strong>Hey, </strong> <hr style='border: none;'> you are watching an " +
+      video_type_text;
   }
 
   //checking for alert alert
 
   if (alert_message) {
     document.getElementById("alert-message").style = "display:block";
-  }else{
-    toggle('tab-body','none')
+  } else {
+    toggle("tab-body", "none");
     document.getElementById("just-message").style = "display:block";
-    document.getElementById('body-container').style.height='220px'
-    
+    document.getElementById("body-container").style.height = "220px";
   }
 
   //initiating extension with recommendations tab
 
   document.getElementById("recommendations-tab").classList.add("active");
   document.getElementById("statistics-body").style.display = "none";
-  
-
 };
 
 const us_elections = () => {
-  // For Biden , against -trump , Neutral
-  for (let i = 0; i < US_elctions.length; i++) {
-    if (US_elctions[i].labels == 1) {
-      neutral_dataset.push(US_elctions[i]);
-    } else if (US_elctions[i].labels == 2) {
-      for_dataset.push(US_elctions[i]);
+  // For Biden(0) , against -trump(1) , Neutral(2)
+  for (let i = 0; i < US_elections.length; i++) {
+    if (US_elections[i].labels == 1) {
+      against_dataset.push(US_elections[i]);
+    } else if (US_elections[i].labels == 2) {
+      neutral_dataset.push(US_elections[i]);
     } else {
-      against_dataset.push(US_elctions[i]);
+      for_dataset.push(US_elections[i]);
     }
   }
 
@@ -289,18 +291,19 @@ const us_elections = () => {
   // 0 -> Indicates Neutral , 2->  Indicate For Removal , 1 ->  Indicates Against removal
   var flag = false;
 
-  for (let i = 0; i < US_elctions.length; i++) {
-    if (curr_url === US_elctions[i].urls) {
+  for (let i = 0; i < US_elections.length; i++) {
+    if (curr_url === US_elections[i].urls) {
       console.log("video found");
       flag = true;
-      current_label = US_elctions[i].labels;
+      current_label = US_elections[i].labels;
+      console.log(current_label);
 
       if (current_label == 0) {
-        out = Rand(0, for_dataset.length - 1, 3, out, for_dataset, "against");
+        out = Rand(0, for_dataset.length - 1, 2, out, for_dataset, "against");
         out = Rand(
           0,
           against_dataset.length - 1,
-          2,
+          3,
           out,
           against_dataset,
           "for"
@@ -317,6 +320,27 @@ const us_elections = () => {
       }
 
       if (current_label == 1) {
+        out = Rand(0, for_dataset.length - 1, 2, out, for_dataset, "for");
+        out = Rand(
+          0,
+          against_dataset.length - 1,
+          3,
+          out,
+          against_dataset,
+          "against"
+        );
+        out = Rand(
+          0,
+          neutral_dataset.length - 1,
+          5,
+          out,
+          neutral_dataset,
+          "neutral"
+        );
+        //console.log(out);
+      }
+
+      if (current_label == 2) {
         out = Rand(0, for_dataset.length - 1, 3, out, for_dataset, "for");
         out = Rand(
           0,
@@ -330,27 +354,6 @@ const us_elections = () => {
           0,
           neutral_dataset.length - 1,
           4,
-          out,
-          neutral_dataset,
-          "neutral"
-        );
-        //console.log(out);
-      }
-
-      if (current_label == 2) {
-        out = Rand(0, for_dataset.length - 1, 3, out, for_dataset, "for");
-        out = Rand(
-          0,
-          against_dataset.length - 1,
-          2,
-          out,
-          against_dataset,
-          "against"
-        );
-        out = Rand(
-          0,
-          neutral_dataset.length - 1,
-          5,
           out,
           neutral_dataset,
           "neutral"
@@ -405,8 +408,8 @@ const us_elections = () => {
       height: 500,
       width: 550,
       titleTextStyle: {
-        color: 'white',    
-        bold: true,    
+        color: "white",
+        bold: true,
       },
       is3D: true,
       colors: ["purple", "yellow", "green"],
@@ -420,13 +423,13 @@ const us_elections = () => {
   }
 
   // functions
-  function toggle(className, displayState){
-    var elements = document.getElementsByClassName(className)
+  function toggle(className, displayState) {
+    var elements = document.getElementsByClassName(className);
 
-    for (var i = 0; i < elements.length; i++){
-        elements[i].style.display = displayState;
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.display = displayState;
     }
-}
+  }
   //updating titles, thumbnails, and label colours
 
   for (let i = 0; i < video_id_array.length; i++) {
@@ -454,40 +457,48 @@ const us_elections = () => {
     }
   }
 
-  if (current_label == 1) {
-    var video_type_text='supports Democrats'
-    document.getElementById("current_video").innerHTML = "<strong>Hey, </strong> <hr style='border: none;'>you are watching a video that "+video_type_text
+  if (current_label == 0) {
+    var video_type_text = "supports Democrats";
+    document.getElementById("current_video").innerHTML =
+      "<strong>Hey, </strong> <hr style='border: none;'>you are watching a video that " +
+      video_type_text;
+  } else if (current_label == 1) {
+    var video_type_text = "supports Republicans";
+    document.getElementById("current_video").innerHTML =
+      "<strong>Hey, </strong> <hr style='border: none;'> you are watching a video that " +
+      video_type_text;
   } else if (current_label == 2) {
-    var video_type_text='supports Republicans'
-    document.getElementById("current_video").innerHTML = "<strong>Hey, </strong> <hr style='border: none;'> you are watching a video that "+video_type_text
-  } else if (current_label == 0) {
-    var video_type_text='unbiased video'
-      document.getElementById("current_video").innerHTML = "<strong>Hey, </strong> <hr style='border: none;'> you are watching an "+video_type_text
+    var video_type_text = "unbiased video";
+    document.getElementById("current_video").innerHTML =
+      "<strong>Hey, </strong> <hr style='border: none;'> you are watching an " +
+      video_type_text;
   }
 
   //checking for alert alert
 
   if (alert_message) {
     document.getElementById("alert-message").style = "display:block";
-  }else{
-    toggle('tab-body','none')
+  } else {
+    toggle("tab-body", "none");
     document.getElementById("just-message").style = "display:block";
-    document.getElementById('body-container').style.height='220px'
+    document.getElementById("body-container").style.height = "220px";
   }
 
   //initiating extension with recommendations tab
 
   document.getElementById("recommendations-tab").classList.add("active");
   document.getElementById("statistics-body").style.display = "none";
-
 };
 
-const doSomething = async () => {
+
+const set_url = async () => {
   await sleep(1200);
   console.log("Code Starting");
   console.log(curr_url);
 
   var flag_article_370 = false;
+  var flag_uselections = false;
+
   for (let i = 0; i < article_370.length; i++) {
     if (curr_url === article_370[i].Video_Url) {
       flag_article_370 = true;
@@ -496,9 +507,9 @@ const doSomething = async () => {
     }
   }
 
-  var flag_uselections = false;
-  for (let i = 0; i < US_elctions.length; i++) {
-    if (curr_url === US_elctions[i].urls) {
+
+  for (let i = 0; i < US_elections.length; i++) {
+    if (curr_url === US_elections[i].urls) {
       flag_uselections = true;
       console.log("video found US elections");
       break;
@@ -512,4 +523,4 @@ const doSomething = async () => {
   }
 };
 
-doSomething();
+set_url();
