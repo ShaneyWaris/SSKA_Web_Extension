@@ -2,7 +2,7 @@
 
 # Data Collection
 We first extracted data of Article 370 and US elections using the youtube api.Then wee made Tf-Idf vectors and Google Universal encoder vectors for the entire data.
-The google colab for extracting the data and generating its vectors is "".480 videos were collected for US elections and 534 videos weere colleccted for Article 370.
+The google colab for extracting the data and generating its vectors is "".480 videos were collected for US elections and 534 videos weere collected for Article 370.
 
 # Running the Model
 We then used K Means Clustering to generate clusters of the data.We observed that Google Universal encoder vectors generated more precise clusters as compared to Tfidf vectors.
